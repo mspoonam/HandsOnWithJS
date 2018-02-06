@@ -31,16 +31,40 @@ console.log(profileNameArrays);
   ]
   Note: This might feel super hard. Don't get stuck on it. Try it later
 */
-// const usersGroupedByNationality = profiles.map(profiles.groupby(profile=>profile.nat))
-// const profilesWithSameNat = profiles.reduce(function(storage,currEle) {
-//   if(currEle in storage){
 
-//   }
-// },[]);
-// console.log(usersGroupedByNationality);
-// const allNat = profiles.
-// const querySameNat = profiles.map(profile=>profile.nat)
+const getOnlyNat = profile => profile.nat
+// const filterByOnlyNat = profile => profile.nat === userNat
+const getAllMappedByNationality = profiles.map(getOnlyNat)
 
+Array.prototype.getAllUniqueNat = function() {
+  var accumulateAllEnititesByNationality = [];
+  for(var i = 0; i < this.length; i++) {
+      if(!accumulateAllEnititesByNationality.includes(this[i])) {
+        accumulateAllEnititesByNationality.push(this[i]);
+      }
+  }
+  return accumulateAllEnititesByNationality; 
+}
+const allUniqueNationality = getAllMappedByNationality.getAllUniqueNat()
+
+function getUsersCombinedByNat (nationality) {  
+  const filteredItems = profiles.filter (function(profile){
+    if (profile.nat === nationality){
+      return true
+    }
+  });
+  return filteredItems
+}
+
+var jsonVariable = {}
+allUniqueNationality.forEach(element => {
+  jsonVariable [element] = getUsersCombinedByNat(element)
+  console.log (jsonVariable)
+});
+
+let  usersGroupedByNationality = []
+usersGroupedByNationality.push(jsonVariable)
+console.log(usersGroupedByNationality)
 
 /*
   Challenge 1.3 - write a function that returns a transformed array of profiles combined with photo data
